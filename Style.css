@@ -4,17 +4,22 @@ body {
     font-family: sans-serif;
 }
 
-h1{
-    color:#fd61de;
+h1 {
+    color: #fd61de;
     text-align: center;
     font-size: 35pt;
 }
 
-p{
+p {
     color: black;
     font-size: 20pt;
     text-align: center;
-    
+
+}
+
+footer {
+    font-family: monospace;
+    font-size: 3pt;
 }
 
 .navbar {
@@ -65,6 +70,7 @@ p{
     background-color: transparent;
     color: inherit;
 }
+
 .navbar img {
     float: left;
     width: 100px;
@@ -79,24 +85,26 @@ p{
     padding: 0px 0px;
     padding-right: 25px;
 }
-.navbar #logo{
+
+.navbar #logo {
     padding: 0px 0px;
-    margin:0px;
+    margin: 0px;
 }
 
-.navbar button{
+.navbar button {
     padding: 0;
     margin: 0;
     margin-right: 10px;
 }
+
 .navbar .button a {
     color: white;
     text-align: center;
     /* padding: 5px 10px;  */
     text-decoration: none;
-    background-color: #4CAF50; 
+    background-color: #4CAF50;
     border-radius: 4px;
-    font-size: 14px; 
+    font-size: 14px;
 }
 
 .search-container {
@@ -115,7 +123,7 @@ input {
 .search-container button {
     padding: 10px;
     font-size: 16px;
-    background-color:#fd61de; 
+    background-color: #fd61de;
     color: white;
     border: none;
     border-radius: 4px;
@@ -125,4 +133,25 @@ input {
 
 button:hover {
     background-color: #fed4f6;
+}
+
+#flex-container {
+    display: flex;
+    justify-content: space-evenly;
+    /* border: 2px solid black; */
+    /* padding: 20px; */
+    height: 350px;
+}
+
+.flex-item {
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    background-color: white;
+    margin: 2px;
+    width: 350px;
+    height: 300px;
+}
+.flex-item p{
+    margin-top: 5px;
 }
