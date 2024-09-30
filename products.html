@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products Page</title>
+    <script src="scripts/script.js"></script>
     <link rel="stylesheet" href="styles/Style.css">
     <link rel="stylesheet" href="styles/p_style.css">
 </head>
@@ -22,7 +23,7 @@
             <a href="appointments.html">Your Appointments</a>
         </div>
         <div class="images">
-            <a href="#"><img id="cart" src="images/shopcart.ico"></a>
+            <a href="cart.html"><img id="cart" src="images/shopcart.ico"></a>
         </div>
         <div class="button">
             <a href="#">Login/Sign-up</a>
@@ -35,24 +36,93 @@
         </form>
     </div>
 
-    <section>
-
-    </section>
-    <div id="product-container">
-        <div class="flex-item">
-            <img class="product-image" src="images/2-strand.jfif" alt="two strand twist" />
-            <h3 id="pinfo">TWO STRAND TWIST</h3>
-            <p id="pinfo">Description</p>
-            <p id="pinfo">PRICE: $60</p>
+    <section id="grease">
+        <div class="head">
+            <h2> Hair Grease</h2>
         </div>
-        <div class="flex-item">2</div>
-        <div class="flex-item">3</div>
-        <div class="flex-item">4</div>
-    </div>
+        <div class="product-container">
+            <div class="flex-item">
+                <img class="product-image" src="images/grease/blue-magix.avif" alt="two strand twist" />
+                <div class="pinfo">
+                    <h3>Blue Magic</h3>
+                    <!-- <p id="pinfo">Description</p> -->
+                    <p>PRICE: $5.99</p>
+                    <a href="details.html"> 
+                        <button>Click here for more details</button>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-item">
+                <img class="product-image" src="images/grease/sul8.jpg" alt="two strand twist" />
+                <div class="pinfo">
+                    <h3>Sulfur 8</h3>
+                    <!-- <p id="pinfo">Description</p> -->
+                    <p>PRICE: $7.99</p>
+                    <a href="details.html"> 
+                        <button>Click here for more details</button>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-item">3</div>
+            <div class="flex-item">4</div>
+        </div>
+    </section>
+    <section id="oil">
+        <div class="head">
+            <h2> Hair Oils</h2>
+        </div>
+        <div class="product-container">
+            <div class="flex-item">
+                <img class="product-image" src="images/oils/wild.jpg" alt="two strand twist" />
+                <div class="pinfo">
+                    <h3>Wild Growth Hair Oil</h3>
+                    <!-- <p id="pinfo">Description</p> -->
+                    <p>PRICE: $8.55</p>
+                    <a href="details.html"> 
+                        <button>Click here for more details</button>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-item">
+                <img class="product-image" src="images/oils/mielle.avif" alt="two strand twist" />
+                <div class="pinfo">
+                    <h3>Mielle: Rosemary Mint oil</h3>
+                    <!-- <p id="pinfo">Description</p> -->
+                    <p>PRICE: $10.99</p>
+                    <a href="details.html"> 
+                        <button>Click here for more details</button>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-item">3</div>
+            <div class="flex-item">4</div>
+        </div>
+    </section>
+    <section id="combs"></section>
+    <section id="misc"></section>
+
+    <section id="hair-styles">
+        <div class="head"></div>
+        <h2> Hairstyles </h2>
+        </div>
+        <div class="product-container">
+            <div class="flex-item">
+                <img class="product-image" src="images/hair/2-strand.jfif" alt="two strand twist" />
+                <div class="pinfo">
+                    <h3>TWO STRAND TWIST</h3>
+                    <!-- <p>Description</p> -->
+                    <p>PRICE: $60</p>
+                    <a href="details.html"> Click here for more details </a>
+                </div>
+            </div>
+            <div class="flex-item">2</div>
+            <div class="flex-item">3</div>
+            <div class="flex-item">4</div>
+        </div>
 
     </section>
 
-    <section>
+    <section id="footer">
         <footer>
             I dont own any of these images Im using, all rights go to them
             *insert copyright symbol here*

@@ -1,0 +1,42 @@
+h2, h3{
+    color: black;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cart-container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: white;
+    width: 40%;
+    
+}
+
+.cart-item{
+    display: flex;
+    flex-direction: row;
+    /* gap: 50px; */
+}
+
+.cart-container img{
+    width: 100px;
+    height: 100px;
+}
+
+label{
+    color: black;
+}
+.quant{
+    
+}
+.quant p{
+    margin-bottom: 5px;
+}
+input{
+    width: 20px;
+    height: 20px;
+}

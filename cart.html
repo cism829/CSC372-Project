@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/Style.css">
+    <link rel="stylesheet" href="styles/cart-style.css">
+    <script src="scripts/script.js" defer></script>
+    <title>Cart</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="images">
+            <a href="index.html"><img id="logo" src="images/favicon.ico" /></a>
+        </div>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="contact.html">Contact Info</a>
+            <a href="appointments.html">Your Appointments</a>
+        </div>
+        <div class="images">
+            <a href="cart.html"><img id="cart" src="images/shopcart.ico"></a>
+        </div>
+        <div class="button">
+            <a href="#">Login/Sign-up</a>
+        </div>
+    </div>
+    <div class="search-container">
+        <form action="#" method="GET">
+            <input type="search" name="query" placeholder="Search Products">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="container">
+        <h2> Your Cart: </h2>
+        <div class="cart-container">
+            <div>
+                <div class="cart-item" data-quantity = "1">
+                    <img src="images/oils/mielle.avif" />
+                    <div id="info">
+                        <h3>Mielle: Rosemary Mint Oil</h3>
+                        <p class="price">10.99</p>
+                        <input type="text" class="quantity">
+                        <button class="submitq">update quantity</button>
+                        <div class="quant">
+                            
+                        </div>
+                        <button class="remove">remove item</button>
+                    </div>
+                </div>
+                <div class="cart-item" data-quantity = "2">
+                    <img src="images/grease/blue-magix.avif" />
+                    <div id="info">
+                        <h3>Blue Magic Hair Grease</h3>
+                        <p class="price">5.99</p>
+                        <input type="text" class="quantity">
+                        <button class="submitq">update quantity</button>
+                        <div class="quant">
+                            
+                        </div>
+                        <button class="remove">remove item</button>
+                    </div>
+                </div>
+                <div class="total">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
