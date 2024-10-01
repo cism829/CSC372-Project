@@ -41,3 +41,14 @@ label{
     height: 20px;
 }
 
+#checkout{
+    display: flex;
+    justify-content: center;
+}
+button:hover {
+    background-color: #fed4f6;
+}
+
+#chkBtn{
+
+}
