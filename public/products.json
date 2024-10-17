@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "category": "grease",
+    "name": "Blue Magic",
+    "price": "5.99",
+    "image": "images/grease/blue-magix.avif",
+    "details": "details.html"
+  },
+  {
+    "id": "2",
+    "category": "grease",
+    "name": "Sulfur 8",
+    "price": "7.99",
+    "image": "images/grease/sul8.jpg",
+    "details": "details.html"
+  },
+  {
+    "id": "3",
+    "category": "oil",
+    "name": "Wild Growth Hair Oil",
+    "price": "8.55",
+    "image": "images/oils/wild.jpg",
+    "details": "details.html"
+  },
+  {
+    "id": "4",
+    "category": "oil",
+    "name": "Mielle: Rosemary Mint oil",
+    "price": "10.99",
+    "image": "images/oils/mielle.avif",
+    "details": "details.html"
+  },
+  {
+    "id": "5",
+    "category": "hairstyles",
+    "name": "Two Strand Twist",
+    "price": "60",
+    "image": "images/hair/2-strand.jfif",
+    "details": "details.html"
+  },
+  {
+    "id": "95",
+    "category": "oil",
+    "name": "Caster Oil",
+    "price": "9.99",
+    "image": "https://example.com/images/headphones.jpg",
+    "details": "details.html",
+    "description": "High-quality wireless Bluetooth headphones with noise cancellation and long battery life."
+  }
+]
