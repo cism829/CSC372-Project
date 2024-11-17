@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title #{title}
+        block styles
+        link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+        block scripts
+            script(src="/scripts/script.js" defer)
+    body
+    div.navbar
+        div.images 
+            a(href="#") 
+                img#logo(src="/images/favicon.ico")
+        div.links 
+            a(href="/products/home") Home 
+            a(href="/products/all") Products 
+            a(href="#") Bookings 
+            a(href="#") Contact Info
+            a(href="#") Your appointments
+        div.images 
+            a(href="#")
+                img#cart(src="/images/shopcart.ico")
+        div.button
+            a(href="#") login/signup
+    div.search-container 
+        form(action="#" method="GET")
+            input(type="search" name="query" placeholder="Search Products")
+            button(type="submit") Search
+
+    div#content
+        block content
+
+    section
+        footer 
+            p I dont own any of these images Im using, all rights go to them
+            
+
