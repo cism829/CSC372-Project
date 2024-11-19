@@ -67,13 +67,14 @@ VALUES  ('grease'), ('oil'), ('combs'), ('hair-styles'), ('misc');
 
 INSERT INTO 
 Products (pName, cateId, imageURL, description, price)
-VALUES  ('Blue Magic', '1', 'images/grease/blue-magix.avif', 'test shampoo', '5.99'),
-        ('Sulfur 8', '1', 'images/grease/sul8.jpg', '', '7.99'),
+VALUES  ('Blue Magic', '1', '/images/grease/blue-magix.avif', 'test shampoo', '5.99'),
+        ('Sulfur 8', '1', '/images/grease/sul8.jpg', '', '7.99'),
         ('Mielle oil', '2', 'ahhhhhhhhh', 'Mielle rosemary mint oil', '10.99'),
-        ('Wild Growth Oil', '2', 'images/oils/wild.jpg', '', '8.55'),
-        ('Two Strad Twist', '4', 'images/hair/2-strand.jfif', '', '60.00'),
+        ('Wild Growth Oil', '2', '/images/oils/wild.jpg', '', '8.55'),
+        ('Two Strad Twist', '4', '/images/hair/2-strand.jfif', '', '60.00'),
         ('Caster Oil', '2', '', 'High-quality wireless Bluetooth headphones with noise cancellation and long battery life.', '9.99'),
-        ('Shine n Jam', '1', 'https://m.media-amazon.com/images/I/51rPBjPS0aL._AC_UF1000,1000_QL80_.jpg', ' ', '9.99')
+        ('Shine n Jam', '1', 'https://m.media-amazon.com/images/I/51rPBjPS0aL._AC_UF1000,1000_QL80_.jpg', ' ', '9.99'),
+		('Wide Toothed Comb', '3', '', 'Standard wide tooth comb', '2.99')
 ;
 
 INSERT INTO

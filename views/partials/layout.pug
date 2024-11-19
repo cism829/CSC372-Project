@@ -5,7 +5,7 @@ html(lang="en")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
         title #{title}
         block styles
-        link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+            link(rel="stylesheet" href="/styles/Style.css" type="text/css")
         block scripts
             script(src="/scripts/script.js" defer)
     body
@@ -15,7 +15,21 @@ html(lang="en")
                 img#logo(src="/images/favicon.ico")
         div.links 
             a(href="/products/home") Home 
-            a(href="/products/all") Products 
+            div.nav-dropdown
+                p browse products
+                ul#dropdownH 
+                    li 
+                        a(href="/products/all") All Products 
+                    li 
+                        a(href="/products/category/grease") Hair Grease
+                    li 
+                        a(href="#") Hair Oil
+                    li 
+                        a(href="#") Combs 
+                    li 
+                        a(href="#") Hair Styles
+                    li 
+                        a(href="#") Misc.
             a(href="#") Bookings 
             a(href="#") Contact Info
             a(href="#") Your appointments

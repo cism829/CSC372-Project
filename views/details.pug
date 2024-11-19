@@ -1,0 +1,18 @@
+extends partials/layout
+
+block styles
+    link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+    link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
+
+block content
+    div#detail-container 
+        div#detail-title 
+            h1 Product Details 
+        div#detail-info 
+            div#pic 
+                img#detail-img(src=products.imageURL)
+                button Add to Cart 
+            div#details 
+                h5 #{products.pName} 
+                p #{products.description}
+                p#price #{products.price}

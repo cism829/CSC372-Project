@@ -23,14 +23,14 @@ footer {
     font-family: 'Courier New', Courier, monospace;
     font-size: 10pt;
     margin-bottom: auto;
-    
+
 }
 
 .navbar {
     display: flex;
     background-color: #fd61de;
     color: white;
-    overflow: hidden;
+    overflow: visible;
     align-items: center;
     padding: 0;
 }
@@ -110,6 +110,50 @@ footer {
     font-size: 14px;
 }
 
+.nav-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-dropdown p{
+    color: white;
+}
+
+#dropdownH {
+    display: none;
+    color: white;
+}
+
+#dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    background-color: #fd61de;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    color: white;
+}
+
+#dropdown a {
+    color: black;
+    text-align: center;
+}
+
+#dropdown li {
+    display: flex;
+    justify-content: center;
+    padding: 5px 10px;
+    width: 100%;
+    cursor: pointer;
+    color: white
+}
+
+/* #dropdown li:hover {
+    background-color: #f1f1f1;
+} */
+
 .search-container {
     display: flex;
     justify-content: flex-end;
@@ -152,15 +196,16 @@ button:hover {
     width: 350px;
     height: 300px;
 }
-.flex-item h3{
+
+.flex-item h3 {
     text-align: center;
 }
-.flex-item p{
+
+.flex-item p {
     margin: 20px;
 }
 
-#big{
-   font-size: 20pt;
-   text-align: center;
+#big {
+    font-size: 20pt;
+    text-align: center;
 }
-

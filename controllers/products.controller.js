@@ -7,43 +7,37 @@ function welcomePage(req, res, next){
 
 function getAll(req, res, next) {
   try {
-    // let gamesList = model.getAll(); 
-    res.render("products", {title: "All Products" });
-    // res.json(model.getAll());
+    let categories = model.getCate();
+    let products = model.getProducts();
+    res.render("products", {categories: categories, products: products, title: "Products"})
   } catch (err) {
     console.error("Error while getting games ", err.message);
     next(err);
   }
 }
 
-// function getAllByOneAttribute(req, res, next) {
-//   let attribute = req.query.attribute;
-//   let value = req.query.value;
-//   if (attribute && value) {
-//     try {
-//       let gamesList = model.getAllByOneAttribute(attribute, value);
-//       res.render("games", { gamesList: gamesList, title: value + " Games" });
-//       //res.json(model.getAllByOneAttribute(attribute, value));
-//     } catch (err) {
-//       console.error("Error while getting games: ", err.message);
-//       next(err);
-//     }
-//   }
-//   else {
-//     res.status(400).send("Invalid Request");
-//   }
-// }
+function oneProduct(req, res, next){
+  try{ 
+    let productId = parseInt(req.params.id);
+    let products = model.oneProduct(productId);
+    res.render("details", {products: products, title: "Product Detail"})
+  }catch (err) {
+    console.error("Error while product", err.message);
+    next(err);
+  }
+}
 
-// function getOneById(req, res, next) {
-//   try {
-//     let game = model.getOneById(req.params.id);
-//     res.render("item-details", { game: game, title: 'Game  #' + req.params.id });
-//     // res.json(model.getOneById(req.params.id));
-//   } catch (err) {
-//     console.error("Error while getting games: ", err.message);
-//     next(err);
-//   }
-// }
+function getOneCate(req,res,next){
+  try{
+    let param = req.params.category;
+    let category = model.getOneCate(param);
+    res.render("category", {category: category, title: "something"});
+  }catch (err) {
+    console.error("Error while getting category", err.message);
+    next(err);
+  }
+
+}
 
 // function createNew(req, res, next) {
 //   let id = parseInt(req.body.id);
@@ -74,7 +68,6 @@ function getAll(req, res, next) {
 module.exports = {
   welcomePage,
   getAll,
-  // getAllByOneAttribute,
-  // getOneById,
-  // createNew
-};
+  oneProduct,
+  getOneCate
+}

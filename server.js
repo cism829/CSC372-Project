@@ -20,7 +20,7 @@ app.set("views", "views");
 app.use("/products", productsRoutes);
 
 app.get("/", (req, res) => {
-  res.redirect("/home");
+  res.redirect("/products/home");
 });
 
 const PORT = process.env.PORT || 3000;

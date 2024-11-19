@@ -4,3 +4,27 @@ block styles
     link(rel="stylesheet" href="/styles/Style.css" type="text/css")
     link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
 
+
+block content
+    section#grease
+    each category in categories
+        div.head 
+            h2 #{category.cateName}
+        div.product-container
+            each product in products 
+                if product.cateId == category.cateId
+                    div.flex-item 
+                        img.product-image(src=product.imageURL  alt="product picture")
+                        div.pinfo 
+                            h3 #{product.pName} 
+                            p Price: $#{product.price}
+                            a(href="/products/"+product.productId)
+                                button Click here for more info
+
+
+//- main.items-container
+//- each category in categories
+//-     article.cate
+//-         div.text
+//-         a(href="/jokebook/joke/" + category.name)
+//-             h3 #{category.name}
