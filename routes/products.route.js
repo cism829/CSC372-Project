@@ -16,13 +16,6 @@ router.get("/:id", productController.oneProduct);
 //http://localhost:3000/products/category/grease
 router.get("/category/:category", productController.getOneCate);
 
-// //http://localhost:3000/games?attribute=platform&value=Wii
-// router.get("/", gamesController.getAllByOneAttribute);
 
-// //http://localhost:3000/games/5
-// router.get("/:id", gamesController.getOneById);
-
-// //http://localhost:3000/games/new
-// router.post("/new", gamesController.createNew);
 
 module.exports = router;

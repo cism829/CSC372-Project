@@ -23,6 +23,14 @@ app.get("/", (req, res) => {
   res.redirect("/products/home");
 });
 
+
+
+const adminRoute = require("./routes/admin.route");
+app.use("/admin", adminRoute);
+
+
+
+
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, function () {
   console.log("App listening at http://localhost:" + PORT);

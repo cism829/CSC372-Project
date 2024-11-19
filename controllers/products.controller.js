@@ -31,7 +31,8 @@ function getOneCate(req,res,next){
   try{
     let param = req.params.category;
     let category = model.getOneCate(param);
-    res.render("category", {category: category, title: "something"});
+    let products = model.getProducts();
+    res.render("category", {category: category, products:products, title: param});
   }catch (err) {
     console.error("Error while getting category", err.message);
     next(err);

@@ -58,5 +58,4 @@ module.exports = {
   getProducts,
   oneProduct,
   getOneCate,
-  createNew
 };

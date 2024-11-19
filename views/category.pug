@@ -1,8 +1,19 @@
 extends partials/layout 
-
+block styles
+    link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+    link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
 
 
 block content   
         div.head 
             h2 #{category.cateName}
-            p #{category.cateId}
+        div.product-container
+            each product in products 
+                if product.cateId == category.cateId
+                    div.flex-item 
+                        img.product-image(src=product.imageURL  alt="product picture")
+                        div.pinfo 
+                            h3 #{product.pName} 
+                            p Price: $#{product.price}
+                            a(href="/products/"+product.productId)
+                                button Click here for more info
