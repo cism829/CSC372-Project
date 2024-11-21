@@ -1,8 +1,22 @@
 body {
     background-color: grey;
+    color: black;
+}
+h1, h3{
+    color: black;
+    text-align: left;
 }
 
-.navbar {
+h2{
+    color: black;
+    margin-left: 0px;
+}
+
+body button:hover{
+    cursor: pointer;
+}
+
+.nav {
     display: flex;
     background-color: black;
     color: white;
@@ -11,13 +25,13 @@ body {
     padding: 0;
 }
 
-.navbar .links {
+.nav .links {
     display: flex;
     margin-right: auto;
     align-items: center;
 }
 
-.navbar a {
+.nav a {
     float: left;
     color: white;
     text-align: center;
@@ -28,23 +42,23 @@ body {
 
 }
 
-.navbar a:hover {
-    background-color: #D3D3D3;
+.nav a:hover {
+    background-color: #414141;
     color: white;
 }
 
-.navbar .images a {
+.nav .images a {
     margin-right: 0;
     margin-left: 0;
     padding: 0 0;
 }
 
-.navbar .images a:hover {
+.nav .images a:hover {
     background-color: transparent;
     color: inherit;
 }
 
-.navbar img {
+.nav img {
     float: left;
     width: 100px;
     height: 70px;
@@ -52,25 +66,23 @@ body {
     padding-left: 0;
 }
 
-.navbar #cart {
+.nav #cart {
     height: 40px;
     width: 40px;
     padding: 0px 0px;
     padding-right: 25px;
 }
 
-.navbar #logo {
+.nav #logo {
     padding: 0px 0px;
     margin: 0px;
 }
 
-.navbar button {
-    padding: 0;
-    margin: 0;
-    margin-right: 10px;
+.nav button {
+   
 }
 
-.navbar .button a {
+.nav .button a {
     color: white;
     text-align: center;
     text-decoration: none;
@@ -78,6 +90,26 @@ body {
     border-radius: 4px;
     font-size: 14px;
 }
+
+#search-bar {
+    height: 25px; 
+    width: auto;
+    padding: 8px; /* Adjust padding for better appearance */
+    font-size: 16px; /* Optional, to align text size */
+}
+
+#search-btn {
+    height: 40px; /* Match the height of the input box */
+    padding: 8px; /* Align padding with input box */
+    font-size: 16px; /* Optional, to match input text */
+    margin-left: 2px; /* Add some spacing between the input box and button */
+    border: none; /* Optional, removes default button border */
+    cursor: pointer; /* Adds pointer effect */
+    background-color: grey; /* Optional, makes the button visually distinct */
+    color: white; 
+    border-radius: 4px; 
+}
+
 
 
 #information {
@@ -170,4 +202,65 @@ header img {
     flex-direction: row;
     justify-content: space-evenly;
     /* gap: 5px; */
+}
+
+.action{
+    display: flex;
+    flex-direction: row;
+    color: white;
+
+    margin:5px;
+    gap: 5px;
+}
+
+.action button{
+    border-radius: 10px;
+}
+
+.editBtn{
+    background-color: yellow;
+
+}
+
+.deleteBtn{
+    background-color: red;
+}
+
+#example{
+    margin-right: 30px;
+    height: 200px;
+}
+
+#sub{
+    color: black;
+}
+
+#preview{
+    display: flex;
+    flex-direction: row;
+
+}
+
+#img-preview{
+    height: 300px;
+    margin-right: 15px;
+}
+
+#therest{
+    display: flex;
+    flex-direction: column;
+}
+
+#id{
+    width: 10px
+}
+
+#change{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#update-form{
+    display: flex;
+    flex-direction: column;
 }

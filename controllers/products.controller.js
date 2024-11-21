@@ -40,6 +40,8 @@ function getOneCate(req,res,next){
 
 }
 
+
+
 // function createNew(req, res, next) {
 //   let id = parseInt(req.body.id);
 //   let name = req.body.name;
@@ -70,5 +72,6 @@ module.exports = {
   welcomePage,
   getAll,
   oneProduct,
-  getOneCate
+  getOneCate,
+
 }

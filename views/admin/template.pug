@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title #{title}
+        block styles
+            link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+            link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
+            link(rel="stylesheet" href="/styles/admin.css" type="text/css")
+
+        block scripts
+            script(src="/scripts/script.js" defer)
+    body
+    div.nav
+        div.links 
+            a(href="/admin/home") All Products 
+            a(href="/admin/upload") Upload Products
+            a(href="#") User Management 
+        form#search-form(action="#")
+            input#search-bar(type="text" placeholder="Search Product or Category")
+            button#search-btn(type="sumbit") search 
+        div.log
+            a(href="#") Logout 
+
+    block add 
+
+    block content

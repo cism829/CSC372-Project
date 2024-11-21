@@ -1,0 +1,17 @@
+extends template 
+
+block content
+    header 
+        h1 Upload Products
+        div#information 
+            div 
+                img#example(src="../../images/example-json.jpg" alt="example picture")
+            div 
+                form#sub(action="/admin/upload" method="POST" enctype="multipart/form-data") 
+                    label(for="myFile") Enter Product JSON File 
+                    input#myFile(type="file" name="myFile" accept="application/json")
+                    button#submit-file(type="submit") Submit File
+                p
+                    | The file you are uploading should be that of json.
+                    br
+                    | Within the file, the contents and attributes should look like this.

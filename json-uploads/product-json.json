@@ -1,0 +1,16 @@
+[
+  {
+    "category": 2,
+    "name": "example 13",
+    "price": "9.99",
+    "image": "https://example.com/images/headphones.jpg",
+    "description": "caster oil "
+  },
+  {
+    "category": 1,
+    "name": "pop pop",
+    "price": "10.50",
+    "image": "https://m.media-amazon.com/images/I/51rPBjPS0aL._AC_UF1000,1000_QL80_.jpg",
+    "description": "Eco-friendly, reusable water bottle with thermal insulation for keeping beverages hot or cold."
+  }
+]

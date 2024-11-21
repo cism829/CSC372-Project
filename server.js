@@ -1,12 +1,15 @@
 "use strict";
 const express = require("express");
 const app = express();
-
-
+const path = require('path');
+const fs = require("fs").promises;
 const multer = require("multer");
-app.use(multer().none());
+// app.use(multer().none());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+
+
 
 const productsRoutes = require("./routes/products.route");
 const { db_close } = require("./models/db-path");
@@ -23,11 +26,13 @@ app.get("/", (req, res) => {
   res.redirect("/products/home");
 });
 
+app.get("/admin", (req, res) => {
+  res.redirect("/admin/home");
+});
 
 
 const adminRoute = require("./routes/admin.route");
 app.use("/admin", adminRoute);
-
 
 
 

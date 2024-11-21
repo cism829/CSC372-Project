@@ -1,0 +1,23 @@
+extends template 
+
+
+block content 
+    each category in categories
+        div.head 
+            h2 #{category.cateName}
+        div.product-container
+            each product in products 
+                if product.cateId == category.cateId
+                    div.flex-item 
+                        img.product-image(src=product.imageURL  alt="product picture")
+                        div.pinfo 
+                            h3 #{product.pName} 
+                            p Price: $#{product.price}
+                            a(href="/products/"+product.productId)
+                                button Click here for more info
+                            div.action 
+                                a(href="/admin/update/"+product.productId)
+                                    button.editBtn edit 
+                                a(href="/admin/delete/"+product.productId)
+                                    button.deleteBtn delete
+        
