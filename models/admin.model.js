@@ -8,24 +8,31 @@ function getEverything() {
 }
 
 function createNew(params) {
-  console.log("create start");
-  let sql = "INSERT INTO Products "+
-            "(pName, description, imageURL, price, cateId) " +
-            "VALUES(?, ?, ?, ?, ?); ";
-  console.log("sql start");
-
-  return new Promise((resolve, reject) => {
-    db.run(sql, params, function (err) {
-      if (err) {
-        console.error("Error inserting into database:", err);
-        return reject(err); 
-      }
-      console.log("Created product with ID:", this.lastID); 
-      resolve(this.lastID); 
-    });
+  console.log("in create new model");
+  let sql = "INSERT INTO Products " +
+    "(pName, description, imageURL, price, cateId) " +
+    "VALUES(?, ?, ?, ?, ?); ";
+  db.run(sql, params, function (err) {
+    if (err) {
+      console.log("AN ERORRRRRRRRRR")
+      console.error("Error inserting into database:", err);
+      return; // Exit early if there's an error
+    }
+    console.log("succesfully created prodecut from json");
+    // console.log("The ID of the last inserted row was: " + this.lastID);
   });
 }
 
+function getByName(name) {
+  console.log("in name model");
+  let sql = "SELECT * " +
+    "FROM PRODUCTS " +
+    "WHERE pName =?;";
+
+  const info = db.get(sql, name);
+  return info;
+  // return info;         
+}
 
 function updateProduct(params) {
   let sql = "UPDATE Products " +
@@ -42,9 +49,17 @@ function deleteProduct(id) {
 
 }
 
+function getUPC(id){
+  let sql = "SELECT upc FROM Products WHERE productId=?;"
+  db.run(sql, id);
+  return info;
+}
+
 module.exports = {
   createNew,
   getEverything,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  getByName,
+  getUPC
 };

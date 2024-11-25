@@ -31,6 +31,12 @@ function getOneCate(cat){
   return item;
 }
 
+function getUPC(id){
+  let sql = "SELECT upc FROM Products WHERE productId=?;"
+  let info = db.get(sql, id);
+  return info;
+}
+
 // function getAllByOneAttribute(attribute, value) {
 //   const validColumns = getColumnNames();
 //   if (validColumns.includes(attribute)) {
@@ -50,6 +56,18 @@ function createNew(params) {
   return info;
 }
 
+function getCart(userId){
+  let sql = "SELECT * FROM Carts WHERE userId=?;";
+  const info = db.get(sql, userId);
+  return info;
+}
+
+function cartProducts(cartId){
+  let sql = "SELECT * From Cartproducts WHERE cartId=?";
+  const info= db.all(sql, cartId);
+  
+  return info;
+}
 
 
 module.exports = {
@@ -58,4 +76,7 @@ module.exports = {
   getProducts,
   oneProduct,
   getOneCate,
+  getUPC,
+  getCart,
+  cartProducts
 };

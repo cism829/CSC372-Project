@@ -1,7 +1,11 @@
 extends template 
+block styles
+            link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+            link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
+            link(rel="stylesheet" href="/styles/admin.css" type="text/css")
 
 block content
-    header 
+    div.content 
         h1 Upload Products
         div#information 
             div 
@@ -15,3 +19,12 @@ block content
                     | The file you are uploading should be that of json.
                     br
                     | Within the file, the contents and attributes should look like this.
+
+        div#new-products
+            if(products)
+                each product in products
+                    div.flex-item 
+                        img.product-image(src=product.imageURL  alt="product picture")
+                        div.pinfo 
+                            h3 #{product.pName} 
+                            p Price: $#{product.price}

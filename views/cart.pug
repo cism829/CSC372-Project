@@ -1,0 +1,28 @@
+extends partials/layout
+
+block styles
+    link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+    link(rel="stylesheet" href="/styles/cart-style.css" type="text/css")
+
+block content 
+    div.container
+        div.cart-container
+            div#all-items 
+                each product in products 
+                    div.cart-item 
+                        img(src=product.imageURL)
+                        div#info 
+                            h3 #{product.pName}
+                            p.price #{product.price}
+                            div.quant
+                                each cartPro in cartProducts
+                                    if cartPro.productId == product.productId
+                                        input.quantity(type="text" value=cartPro.quantity)
+                                        button.submitq update quantity
+                            button.remove remove item
+            div#total 
+                p  Total: $#{total}
+            div#checkout 
+                button#chkBtn Checkout
+
+            

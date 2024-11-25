@@ -1,5 +1,9 @@
 extends template 
 
+block scripts
+    script(src="/scripts/admin-script.js" defer)
+    script(src="/scripts/script.js" defer)
+
 block content
     h1 #{product.pName}
     div#preview
@@ -12,14 +16,17 @@ block content
             p Price: $#{product.price}
             a(href="/admin/delete/"+product.productId)
                                     button.deleteBtn delete
-        div#change 
+            button#edit-open.editBtn edit
+        div#hidden 
             h2 Please fill out entire form
             form#update-form(action="/admin/update/"+product.productId method="POST" enctype="multipart/form-data" )
                 input(type="text" name="pName" placeholder="Product Name" value=product.pName) 
                 input(type="text" name="description" placeholder="Description" value=product.description)
                 input(type="number" name="price" placeholder="Price" value=product.price) 
                 input(type="file" name="imageURL" placeholder="New Image")
-                button#updateBtn(type="submit") Save Changes
+                div#form-buttons
+                    button#updateBtn(type="submit") Save Changes
+                    button#close-edit Close
         
         
 

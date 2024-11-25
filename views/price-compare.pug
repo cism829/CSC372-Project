@@ -1,0 +1,27 @@
+extends partials/layout
+
+block styles
+    link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+    link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
+
+block content
+     
+    div#comparison
+        div#my-item
+            h1 My Product
+            div#myItem-container
+                img.product-image(src=products.imageURL)
+                div.info
+                    p #{products.pName} 
+                    p #{products.price}
+
+        div#competitor
+            h1 Competitors 
+            div#scroll
+                each competitor in competitors
+                    div.item
+                        img.product-image(src=competitor.image)
+                        div.info
+                            p #{competitor.merchant} 
+                            p #{competitor.price}
+                

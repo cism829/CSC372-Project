@@ -44,6 +44,7 @@ label{
 #checkout{
     display: flex;
     justify-content: center;
+    margin-top: 15px;
 }
 button:hover {
     background-color: #fed4f6;

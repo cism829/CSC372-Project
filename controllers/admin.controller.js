@@ -7,6 +7,7 @@ const express = require("express");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
+const upcApi = "https://api.upcitemdb.com/prod/trial/lookup?upc=";
 
 const model = require("../models/admin.model");
 const productModel = require("../models/products.model");
@@ -34,6 +35,9 @@ function uploadPage(req, res, next) {
 }
 
 function uploadProducts(req, res, next) {
+  let newpName;
+  let products = [];
+
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
   }
@@ -44,38 +48,43 @@ function uploadProducts(req, res, next) {
     }
 
     try {
+      console.log("file was read");
       const json = JSON.parse(data);
-
-      // Create an array of promises for all the insert operations
-      let insertPromises = [];
 
       for (let i = 0; i < json.length; i++) {
         let product = json[i];
-
+        newpName = product.name;
         let params = [product.name, product.description, product.image, product.price, product.category];
-        console.log("the params are:", params);
+        console.log("params were made");
+        newProduct(params);
+        let productData = model.getByName(newpName);
 
-        // Add each database insert operation as a Promise to the array
-        let insertPromise = model.createNew(params);
-        insertPromises.push(insertPromise);
+        products[products.length] = productData;
+        console.log(newpName);
+        console.log("getting product by name");
+
+
+      }
+      console.log(" ");
+
+      console.log("before product for loop");
+      for (let i = 0; i < products.length; i++) {
+        console.log("products uploaded: " + JSON.stringify(products[i], null, 2));
       }
 
-      
-      Promise.all(insertPromises)
-        .then(() => {
-          console.log("All products inserted successfully.");
-          res.redirect("/admin/upload"); 
-        })
-        .catch((err) => {
-          console.error("Error during product insertion:", err);
-          res.redirect("/admin/upload");         
-        });
-
+      res.render("admin/upload", {title: "title", products: products})
+      // res.redirect("/admin/upload");
     } catch (parseError) {
       console.error("JSON parse error:", parseError);
       return res.status(400).send("Invalid JSON format.");
     }
   });
+}
+
+function newProduct(params) {
+  console.log("newProduct");
+  model.createNew(params);
+
 }
 
 

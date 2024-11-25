@@ -219,7 +219,7 @@ header img {
 
 .editBtn{
     background-color: yellow;
-
+    width: fit-content;
 }
 
 .deleteBtn{
@@ -263,4 +263,24 @@ header img {
 #update-form{
     display: flex;
     flex-direction: column;
+}
+
+.new-item img{
+    height: 100px;
+}
+
+#new-products{
+    display: flex;
+    flex-direction: row;
+}
+
+#form-buttons{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#hidden{
+    display: none;
 }
