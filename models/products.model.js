@@ -63,12 +63,29 @@ function getCart(userId){
 }
 
 function cartProducts(cartId){
-  let sql = "SELECT * From Cartproducts WHERE cartId=?";
+  let sql = "SELECT * From CartProducts WHERE cartId=?";
   const info= db.all(sql, cartId);
   
   return info;
 }
 
+function deleteFromCart(cartProductId){
+  let sql = "DELETE From CartProducts WHERE cartProductId=?";
+  db.run(sql, cartProductId);
+}
+
+function updateQuant(params){
+  let sql = "UPDATE CartProducts SET quantity=? WHERE cartProductId=?"
+  db.run(sql, params);
+  
+}
+
+function addToCart(params){
+    let sql = "INSERT INTO CartProducts (cartId, productId, quantity) "+
+              "Values (?, ?, ?);";
+    db.run(sql,params);
+    console.log("added to cart");
+}
 
 module.exports = {
   getAll,
@@ -78,5 +95,8 @@ module.exports = {
   getOneCate,
   getUPC,
   getCart,
-  cartProducts
+  cartProducts,
+  deleteFromCart,
+  updateQuant,
+  addToCart
 };

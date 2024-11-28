@@ -209,3 +209,22 @@ button:hover {
     font-size: 20pt;
     text-align: center;
 }
+
+#user-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellow; */
+}
+
+#user-info p{
+    margin: 0px;
+}
+
+#user-pic{
+    border-radius: 50%;
+    height: 50px;
+    width: auto;
+    margin: 0;
+}

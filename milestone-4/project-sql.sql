@@ -1,19 +1,25 @@
+DROP TABLE IF EXISTS CartProducts;
+DROP TABLE IF EXISTS Carts;
+
 DROP TABLE IF EXISTS Users;
 
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Categories;
 
-DROP TABLE IF EXISTS Carts;
+
 DROP TABLE IF EXISTS Appointments;
-DROP TABLE IF EXISTS CartProducts;
+
 
 CREATE TABLE Users(
   userId INTEGER PRIMARY KEY AUTOINCREMENT, 
   name VARCHAR(106) NOT NULL,
   created_on INTEGER,
   email VARCHAR(50) UNIQUE,
-  userPw VARCHAR(50)NOT NULL,
-  accType VARCHAR(50) NOT NULL
+  first_name VARCHAR(106),
+  last_name VARCHAR(106),
+  google_id INTEGER,
+  accType VARCHAR(50),
+  picture VARCHAR(106)
 );
 
 CREATE TABLE Categories(
@@ -79,11 +85,20 @@ VALUES  ('Blue Magic', '1', '/images/grease/blue-magix.avif', 'test shampoo', '5
 ;
 
 INSERT INTO
-Users (name, email, accType, created_on, userPw)
-Values  ('Collin','Clrodgers@uncg.edu', 'ADMIN', '2024-08-24', '0424'),
-        ('Collin','Collin042410@gmail.com', 'User', '2024-09-24', '0829')
+Users (name, email, accType, created_on)
+Values  ('Collin','Collin042410@gmail.com', 'User', '2024-09-24')
 ;
 
 INSERT INTO 
 Appointments(appName, appDur, timeDate, appPrice)
 Values ('Two Strand Twist', '2.5', '08-08-2024 12:12', '60.00');
+
+INSERT INTO 
+Carts(status, userId)
+Values	('active', '1');
+
+
+INSERT INTO 
+CartProducts(cartId, productId, quantity)
+Values	('1', '1', '1'),
+		('1', '2', '2');

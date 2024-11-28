@@ -17,12 +17,13 @@ function getAll(req, res, next) {
 }
 
 async function oneProduct(req, res, next) {
+  req.session.returnTo = req.originalUrl;
   try {
     const productId = parseInt(req.params.id);
     const products = model.oneProduct(productId);
     const otherInfo = await getBigDes(productId);
 
-    res.render("details", { products: products, title: "Product Detail", otherInfo: otherInfo });
+    res.render("details", { products: products, title: "Product Detail", otherInfo: otherInfo, user: req.user });
   } catch (err) {
     console.error("Error while fetching product", err.message);
     next(err);
@@ -45,7 +46,7 @@ async function getBigDes(id) {
 
     const bigDes = repoData.items[0].description;
     const brand = repoData.items[0].brand;
-    
+
 
     return { bigDes, brand };
   } catch (error) {
@@ -59,7 +60,7 @@ async function compareProduct(req, res, next) {
   let products = model.oneProduct(productId);
   const competitors = await getCompetitors(productId);
 
-  res.render("price-compare", {title: "title", products: products, competitors: competitors});
+  res.render("price-compare", { title: "title", products: products, competitors: competitors });
 }
 
 async function getCompetitors(productId) {
@@ -82,7 +83,7 @@ async function getCompetitors(productId) {
       let compMerchant = items.offers[i].merchant; // Match with the same index
       let compPrice = items.offers[i].price;       // Match with the same index
 
-      
+
       // Directly assign to the array
       compObj[i] = {
         image: compImg,
@@ -90,7 +91,7 @@ async function getCompetitors(productId) {
         price: compPrice
       };
     }
-    
+
     return compObj;
 
   } catch (error) {
@@ -113,37 +114,69 @@ function getOneCate(req, res, next) {
 
 }
 
-function getCart(req, res, next){
+function getCart(req, res, next) {
   let userId = 1;
-  let cart =  model.getCart(userId); 
-  let cartProducts= model.cartProducts(cart.cartId); 
+  let cart = model.getCart(userId);
+  let cartProducts = model.cartProducts(cart.cartId);
   let products = [];
-  let total=0;
-  
+  let total = 0;
 
-  for(let i=0; i<cartProducts.length; i++){
+  for (let i = 0; i < cartProducts.length; i++) {
     let productId = cartProducts[i].productId;
     let productData = model.oneProduct(productId);
-    let quantity =0;
+    let quantity = 0;
 
-    if(cartProducts[i].productId == productData.productId){
+    if (cartProducts[i].productId == productData.productId) {
       quantity = parseFloat(cartProducts[i].quantity);
+      if(quantity==0){
+        model.deleteFromCart(cartProducts[i].cartProductId); 
+        
+      }
     }
 
     let price = parseFloat(productData.price);
 
-    products[i]= productData;
+    products[i] = productData;
 
-    total += price * quantity;
+
+    let itemPrice = price * quantity;
+
+    total += itemPrice;
+
+
   }
 
-  console.log(total);
-  res.render("cart.pug", {title: "Cart", products: products, cartProducts: cartProducts, total: total});
+  let subTotal = parseFloat(total.toFixed(2));
+  res.render("cart.pug", { title: "Cart", products: products, cartProducts: cartProducts, subTotal: subTotal });
 
 }
 
-function calcTotal(){
+function removeFromCart(req, res, next) {
+  let cartProductId = req.params.id;
+  model.deleteFromCart(cartProductId);
+  res.redirect("/products/cart/1");
+}
 
+function updateQuant(req, res, next) {
+  let cartProductId = req.params.id;
+  let newQuant = req.body.quantity;
+
+  let params = [newQuant, cartProductId];
+
+  model.updateQuant(params);
+  res.redirect("/products/cart/1");
+
+}
+
+function addToCart(req, res, next) {
+  let cartId = req.params.cartId;
+  let productId = req.params.productId;
+  let quantity = 1;
+
+  let params = [cartId, productId, quantity];
+  model.addToCart(params);
+
+  res.redirect("/products/all");
 }
 
 module.exports = {
@@ -152,6 +185,8 @@ module.exports = {
   oneProduct,
   getOneCate,
   compareProduct,
-  getCart
-
+  getCart,
+  removeFromCart,
+  updateQuant,
+  addToCart
 }

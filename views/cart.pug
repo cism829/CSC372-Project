@@ -17,11 +17,13 @@ block content
                             div.quant
                                 each cartPro in cartProducts
                                     if cartPro.productId == product.productId
-                                        input.quantity(type="text" value=cartPro.quantity)
-                                        button.submitq update quantity
-                            button.remove remove item
+                                        form(action="/products/cart/quant"+cartPro.cartProductId method="POST")
+                                            input.quantity(type="text" value=cartPro.quantity name="quantity")
+                                            button.submitq update quantity
+                                        form(action="/products/cart/remove/"+cartPro.cartProductId  method="GET")
+                                            button.remove(type="submit") remove item
             div#total 
-                p  Total: $#{total}
+                p  subtotal: $#{subTotal}
             div#checkout 
                 button#chkBtn Checkout
 

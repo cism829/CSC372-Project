@@ -20,11 +20,14 @@ h2, h3{
 .cart-item{
     display: flex;
     flex-direction: row;
+    margin: 10px;
+    margin-bottom: 30px;
 }
 
 .cart-container img{
     width: 100px;
     height: 100px;
+    margin-right: 5px;
 }
 
 label{

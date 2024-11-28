@@ -8,8 +8,24 @@ const multer = require("multer");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const session = require('express-session');
+const passport = require('passport');
+require("./auth/passport");
+app.use(session({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
+
+app.use('/auth', require('./auth/auth.route'));
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;  // Make user available to all views
+  next();
+});
 
 const productsRoutes = require("./routes/products.route");
 const { db_close } = require("./models/db-path");
@@ -23,7 +39,9 @@ app.set("views", "views");
 app.use("/products", productsRoutes);
 
 app.get("/", (req, res) => {
-  res.redirect("/products/home");
+  req.session.returnTo = req.originalUrl;
+  console.log("User in session:", req.user);
+  res.render("home");
 });
 
 app.get("/admin", (req, res) => {

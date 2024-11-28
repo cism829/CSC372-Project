@@ -37,7 +37,13 @@ html(lang="en")
             a(href="/products/cart/1")
                 img#cart(src="/images/shopcart.ico")
         div.button
-            a(href="#") login/signup
+            if user
+                div#user-info
+                    img#user-pic(src=user.photos[0].value alt="User Icon") 
+                    p Welcome, #{user.name.givenName} 
+                    //- a(href="/logout") Logout
+            else
+                a(href="/auth/google") login/signup
     div.search-container 
         form(action="#" method="GET")
             input(type="search" name="query" placeholder="Search Products")
