@@ -21,7 +21,7 @@ router.get("/category/:category", productController.getOneCate);
 
 router.get("/cart/:userId", productController.getCart);
 
-router.get("/cart/add/:cartId/:productId", productController.addToCart);
+router.get("/cart/add/:userId/:productId", productController.addToCart);
 
 //http://localhost:3000/products/cart/remove/1
 router.get("/cart/remove/:id", productController.removeFromCart);
@@ -30,6 +30,10 @@ router.post("/cart/quant:id", productController.updateQuant);
 
 //http://localhost:3000/products/
 // router.post("/cart/:userId/:productId", productController.addToCart);
+
+router.get("/checkout/:id", productController.checkout);
+
+router.get("/orders/:googleId", productController.getOrder);
 
 
 module.exports = router;

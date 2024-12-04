@@ -19,7 +19,7 @@ block content
                                 button Click here for more info
                             div.side-by-side
                                 if product.cateId !=4
-                                    form(action="/products/cart/add/1/"+product.productId method="GET")
+                                    form(action="/products/cart/add/"+user.id+"/"+product.productId method="GET")
                                         button(type="submit") Add to Cart  
                                     a(href="/products/compare/"+product.productId)
                                         button Compare prices

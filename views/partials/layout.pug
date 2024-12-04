@@ -34,14 +34,21 @@ html(lang="en")
             a(href="#") Contact Info
             a(href="#") Your appointments
         div.images 
-            a(href="/products/cart/1")
-                img#cart(src="/images/shopcart.ico")
+            if user
+                a(href="/products/cart/"+user.id)
+                    img#cart(src="/images/shopcart.ico")
         div.button
             if user
                 div#user-info
                     img#user-pic(src=user.photos[0].value alt="User Icon") 
-                    p Welcome, #{user.name.givenName} 
-                    //- a(href="/logout") Logout
+                    p#press Welcome, #{user.name.givenName} 
+                    ul#userH 
+                        li 
+                            a#user-order(href="/products/orders/"+user.id) Your Orders
+                        li 
+                            a#logout(href="/auth/logout") logout 
+                        li 
+                            a(href="/admin") Admin Page
             else
                 a(href="/auth/google") login/signup
     div.search-container 

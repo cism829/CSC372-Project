@@ -16,7 +16,7 @@ function createNew(params) {
     if (err) {
       console.log("AN ERORRRRRRRRRR")
       console.error("Error inserting into database:", err);
-      return; // Exit early if there's an error
+      return; 
     }
     console.log("succesfully created prodecut from json");
     // console.log("The ID of the last inserted row was: " + this.lastID);

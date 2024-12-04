@@ -29,6 +29,7 @@ router.get("/login", (req, res) => {
     res.render("login");
 });
 
+
 router.get("/logout", function (req, res, next) {
     req.logout(function (err) {
         if (err) {

@@ -40,7 +40,6 @@ app.use("/products", productsRoutes);
 
 app.get("/", (req, res) => {
   req.session.returnTo = req.originalUrl;
-  console.log("User in session:", req.user);
   res.render("home");
 });
 

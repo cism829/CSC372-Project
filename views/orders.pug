@@ -1,0 +1,21 @@
+extends partials/layout
+
+block styles
+    link(rel="stylesheet" href="/styles/Style.css" type="text/css")
+    link(rel="stylesheet" href="/styles/p_style.css" type="text/css")
+
+block content
+    h2 YOUR ORDER(S)
+    div#order-container 
+        div#order-item
+            each item in items
+                div.oneItem
+                    div#order-pic
+                        img(src=item.image alt=item.name)
+                    div#order-info
+                        p #{item.name}
+                        p Qty: #{item.quantity} 
+                        p $#{item.price}
+        div#grand-total
+            h3 Total: $#{grandTotal}
+        

@@ -115,7 +115,7 @@ footer {
     cursor: pointer;
 }
 
-.nav-dropdown p{
+.nav-dropdown p {
     color: white;
 }
 
@@ -210,21 +210,101 @@ button:hover {
     text-align: center;
 }
 
-#user-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* background-color: yellow; */
+#user-info {
+    position: relative;
+    cursor: pointer;
+
+    
 }
 
-#user-info p{
+#user-info p {
     margin: 0px;
 }
 
-#user-pic{
+#user-pic {
+    align-self: center;
     border-radius: 50%;
     height: 50px;
     width: auto;
     margin: 0;
+
+    
+}
+
+#userH {
+    display: none;
+    color: white;
+}
+
+
+#show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    background-color: #fd61de;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    color: white;
+
+    height: 75px;
+    width: 100%;
+
+    justify-content:space-around;
+}
+
+#order-pic img{
+    height: 150px;
+    max-width: 150px;
+}
+
+#order-container{
+    display: flex;
+    flex-direction: column;
+    /* background-color: yellow; */
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+}
+
+#order-item{
+    display: flex;
+    flex-direction: row;
+    /* background-color: #4CAF50; */
+    width: 50%;
+    margin: 5px;
+    flex-wrap: wrap;
+}
+.oneItem{
+    display: flex;
+    width: 40%;
+    flex-direction: row;
+    /* background-color: blue; */
+}
+#order-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#order-info p{
+    margin: 0px;
+}
+
+#user-info a{
+    font-size: 12pt;
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+    margin:0px;
+}
+
+#user-info a:hover{
+    background-color: #D3D3D3;
+}
+
+#press{
+    color: white;
 }

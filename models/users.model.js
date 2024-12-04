@@ -3,7 +3,7 @@ const db = require("./db-path");
 
 
 function getUserById(id) {
-    let sql = "SELECT * FROM Users where google_id=?";
+    let sql = "SELECT userId FROM Users where google_id=?";
     const item = db.get(sql, id);
     return item;
   }
@@ -14,8 +14,14 @@ function getUserById(id) {
     return info;
   }
 
+  function createCart(params){
+    let sql = "INSERT INTO Carts (userId) Values(?);";
+    db.run(sql, params);
+  }
+
   
 module.exports = {
     getUserById,
-    createNewUser
+    createNewUser,
+    createCart
   };

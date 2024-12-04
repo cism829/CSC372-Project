@@ -1,7 +1,20 @@
 const dropMenu = document.querySelector('.nav-dropdown');
 const menuItems = document.getElementById('dropdownH');
 
-// Toggle visibility on click
+const userMenu = document.getElementById('user-info');
+const userDrop = document.getElementById('userH');
+
+userMenu.addEventListener("click", () => {
+    userDrop.id = "show";
+});
+
+document.addEventListener("click", (event) => {
+    if (!userMenu.contains(event.target)) {
+        userDrop.id = "userH";
+    }
+});
+
+
 dropMenu.addEventListener("click", () => {
     if (menuItems.id == "dropdownH") {
         menuItems.id = "dropdown";
@@ -11,12 +24,13 @@ dropMenu.addEventListener("click", () => {
     }
 });
 
-// Optional: Close the dropdown if clicked outside
 document.addEventListener("click", (event) => {
     if (!dropMenu.contains(event.target)) {
         menuItems.id = "dropdownH";
+
     }
 });
+
 
 
 

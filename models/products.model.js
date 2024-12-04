@@ -37,16 +37,6 @@ function getUPC(id){
   return info;
 }
 
-// function getAllByOneAttribute(attribute, value) {
-//   const validColumns = getColumnNames();
-//   if (validColumns.includes(attribute)) {
-//     let sql = "SELECT * FROM Games WHERE " + attribute + " =? ;";
-//     const data = db.all(sql, value);
-//     return data;
-//   }
-// }
-
-
 
 function createNew(params) {
   let sql = "INSERT INTO Products " +
@@ -55,6 +45,7 @@ function createNew(params) {
   const info = db.run(sql, params);
   return info;
 }
+
 
 function getCart(userId){
   let sql = "SELECT * FROM Carts WHERE userId=?;";
@@ -65,7 +56,6 @@ function getCart(userId){
 function cartProducts(cartId){
   let sql = "SELECT * From CartProducts WHERE cartId=?";
   const info= db.all(sql, cartId);
-  
   return info;
 }
 
@@ -87,6 +77,51 @@ function addToCart(params){
     console.log("added to cart");
 }
 
+function getUserbyGoo(params){
+  let sql = "SELECT userId FROM Users WHERE google_id=?";
+  let info = db.all(sql, params);
+
+  return info;
+
+}
+
+function getBycpId(params){
+  let sql = "SELECT cartId FROM CartProducts WHERE cartproductId=? ";
+  let info = db.get(sql, params);
+  return info;
+}
+function getbycId(params){
+  let sql = "SELECT userId FROM Carts where cartId=?";
+  let info = db.get(sql, params);
+  return info;
+}
+
+function getGoobyUser(params){
+
+  let sql = "SELECT google_id FROM Users where userId=?;"
+  let info = db.get(sql, params);
+  console.log(info);
+  return info ;
+}
+
+function makeOrders(params){
+  let sql="INSERT INTO Orders (userId, productId, quantity, totalPrice)"+
+          "Values (?,?,?,?);";
+  db.run(sql,params);
+  
+}
+
+function getOrder(params){
+  let sql="SELECT * FROM Orders WHERE userId=?";
+  let info = db.all(sql, params);
+  
+  return info;
+}
+
+function clearCart(params){
+
+}
+
 module.exports = {
   getAll,
   getCate,
@@ -98,5 +133,12 @@ module.exports = {
   cartProducts,
   deleteFromCart,
   updateQuant,
-  addToCart
+  addToCart,
+  getUserbyGoo,
+  getBycpId,
+  getbycId,
+  getGoobyUser,
+  makeOrders,
+  getOrder,
+  clearCart
 };

@@ -80,11 +80,11 @@ async function getCompetitors(productId) {
     const items = repoData.items[0];
     for (let i = 0; i < items.images.length; i++) {
       let compImg = items.images[i];
-      let compMerchant = items.offers[i].merchant; // Match with the same index
-      let compPrice = items.offers[i].price;       // Match with the same index
+      let compMerchant = items.offers[i].merchant; 
+      let compPrice = items.offers[i].price;       
 
 
-      // Directly assign to the array
+      
       compObj[i] = {
         image: compImg,
         merchant: compMerchant,
@@ -115,8 +115,15 @@ function getOneCate(req, res, next) {
 }
 
 function getCart(req, res, next) {
-  let userId = 1;
+  console.log("getCart");
+  let googleId = req.params.userId;
+  console.log(googleId);
+  let myId = model.getUserbyGoo(googleId);
+
+  let userId = myId[0].userId;
+  console.log(userId);
   let cart = model.getCart(userId);
+  console.log(cart);
   let cartProducts = model.cartProducts(cart.cartId);
   let products = [];
   let total = 0;
@@ -128,22 +135,16 @@ function getCart(req, res, next) {
 
     if (cartProducts[i].productId == productData.productId) {
       quantity = parseFloat(cartProducts[i].quantity);
-      if(quantity==0){
-        model.deleteFromCart(cartProducts[i].cartProductId); 
-        
+      if (quantity == 0) {
+        model.deleteFromCart(cartProducts[i].cartProductId);
+
       }
     }
 
     let price = parseFloat(productData.price);
-
     products[i] = productData;
-
-
     let itemPrice = price * quantity;
-
     total += itemPrice;
-
-
   }
 
   let subTotal = parseFloat(total.toFixed(2));
@@ -153,8 +154,13 @@ function getCart(req, res, next) {
 
 function removeFromCart(req, res, next) {
   let cartProductId = req.params.id;
+  let cartId = model.getBycpId(cartProductId);
+  let userId = model.getbycId(cartId.cartId);
+  let googleId = model.getGoobyUser(userId.userId);
+  console.log(googleId.google_id);
   model.deleteFromCart(cartProductId);
-  res.redirect("/products/cart/1");
+  console.log("redirect");
+  res.redirect("/products/cart/" + googleId.google_id);
 }
 
 function updateQuant(req, res, next) {
@@ -162,21 +168,115 @@ function updateQuant(req, res, next) {
   let newQuant = req.body.quantity;
 
   let params = [newQuant, cartProductId];
+  let cartId = model.getBycpId(cartProductId);
+  let userId = model.getbycId(cartId.cartId);
+  let googleId = model.getGoobyUser(userId.userId);
+  console.log(googleId.google_id);
 
   model.updateQuant(params);
-  res.redirect("/products/cart/1");
+  res.redirect("/products/cart/" + googleId.google_id);
 
 }
 
 function addToCart(req, res, next) {
-  let cartId = req.params.cartId;
+  let googleId = req.params.userId;
+  console.log(googleId);
+  let userId = model.getUserbyGoo(googleId);
+  console.log(userId[0].userId);
+  let cartId = model.getCart(userId[0].userId);
+  console.log(cartId.cartId);
   let productId = req.params.productId;
   let quantity = 1;
 
-  let params = [cartId, productId, quantity];
+  let params = [cartId.cartId, productId, quantity];
+  console.log(params);
   model.addToCart(params);
 
   res.redirect("/products/all");
+}
+
+function checkout(req, res, next) {
+  console.log("start checkout");
+  let googleId = req.params.id;
+  console.log(googleId);
+  console.log("getting user id");
+  let userId = model.getUserbyGoo(googleId);
+  console.log(userId[0].userId);
+  userId = userId[0].userId;
+  console.log(userId);
+  console.log("getting cart id");
+  let cartId = model.getCart(userId);
+  console.log(cartId.cartId);
+  cartId = cartId.cartId;
+  console.log("pause");
+  console.log(cartId)
+  let cartItems = model.cartProducts(cartId);
+
+  console.log("items in cart");
+  console.log(cartItems);
+  let params = [];
+
+  console.log("start inserting")
+  for (let i = 0; i < cartItems.length; i++) {
+    console.log((i + 1)); console.log(cartItems[i]);
+
+    let quantity = parseInt(cartItems[i].quantity);
+    console.log("q= " + quantity);
+
+    let productId = cartItems[i].productId;
+    console.log("pid= " + productId);
+
+    let product = model.oneProduct(productId);
+    console.log(product);
+    let price = parseFloat(product.price);
+    console.log("price: " + price);
+
+    let totalPrice = price * quantity;
+    console.log(totalPrice);
+
+    params = [userId, productId, quantity, totalPrice];
+    console.log(params);
+    model.makeOrders(params);
+    console.log("inserted product: " + (i + 1));
+  }
+
+  console.log("end inserted");
+  console.log("end checkout");
+  res.redirect("/products/all");
+}
+
+function getOrder(req, res, next) {
+  let googleId = req.params.googleId;
+  let userId = model.getUserbyGoo(googleId);
+  
+  userId = userId[0].userId;
+
+  let orders = model.getOrder(userId);
+
+  let items=[];
+  let total =0;
+  console.log("order extraction")
+  for(let i=0; i<orders.length;i++){
+    
+    let id= orders[i].userId;
+    let quantity = orders[i].quantity;
+    let product = model.oneProduct(orders[i].productId);
+    let name = product.pName;
+    let price = orders[i].totalPrice;
+    let image = product.imageURL;
+
+    total += price;
+    let info = {id, name, image, price, quantity};
+
+    items[i] = info;
+  }
+let grandTotal = total.toFixed(2);
+  console.log(grandTotal);
+  console.log(items);
+
+  
+  console.log("rendering");
+  res.render("orders", { title: "Orders", items: items, grandTotal: grandTotal});
 }
 
 module.exports = {
@@ -188,5 +288,7 @@ module.exports = {
   getCart,
   removeFromCart,
   updateQuant,
-  addToCart
+  addToCart,
+  checkout,
+  getOrder
 }

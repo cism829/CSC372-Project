@@ -8,7 +8,7 @@ const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
 
-// Ensure the "up" directory exists
+
 const uploadPath = path.join("./public/images/uploads");
 if (!fs.existsSync(uploadPath)) {
     fs.mkdirSync(uploadPath, { recursive: true });
@@ -16,7 +16,7 @@ if (!fs.existsSync(uploadPath)) {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, uploadPath); // Save in the "up" folder in the current directory
+        cb(null, uploadPath); 
     },
     filename: (req, file, cb) => {
         cb(null, file.originalname);
@@ -29,14 +29,15 @@ const upload = multer({ storage: storage });
 
 const jsonStorage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, "./json-uploads");  // Specify the directory where you want to store the JSON files
+      cb(null, "./json-uploads");  
     },
     filename: function (req, file, cb) {
-      cb(null, file.originalname);  // Gives the uploaded file a unique name based on timestamp
+      cb(null, file.originalname);  
     },
   });
+
+
   
-  // Set up the upload for only JSON files
   const uploadJson = multer({
     storage: jsonStorage,
     fileFilter: (req, file, cb) => {

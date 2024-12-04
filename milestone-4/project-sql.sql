@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS ORDERS;
+
 DROP TABLE IF EXISTS CartProducts;
 DROP TABLE IF EXISTS Carts;
 
@@ -66,6 +68,15 @@ CREATE TABLE CartProducts(
   FOREIGN KEY (productId) REFERENCES Products(productId)
 );
 
+CREATE TABLE Orders(
+	ordersId INTEGER PRIMARY KEY AUTOINCREMENT,
+	totalPrice INTEGER,
+	quantity INTEGER,
+	cartId INTEGER,
+	productId INTEGER,
+	FOREIGN KEY (cartId) REFERENCES Carts(cartId),
+	FOREIGN KEY (productId) REFERENCES Products(productId)
+);
 
 INSERT INTO 
 Categories(cateName)
@@ -84,21 +95,8 @@ VALUES  ('Blue Magic', '1', '/images/grease/blue-magix.avif', 'test shampoo', '5
 		('Wide Toothed Comb', '3', '', 'Standard wide tooth comb', '2.99', '')
 ;
 
-INSERT INTO
-Users (name, email, accType, created_on)
-Values  ('Collin','Collin042410@gmail.com', 'User', '2024-09-24')
-;
+
 
 INSERT INTO 
 Appointments(appName, appDur, timeDate, appPrice)
 Values ('Two Strand Twist', '2.5', '08-08-2024 12:12', '60.00');
-
-INSERT INTO 
-Carts(status, userId)
-Values	('active', '1');
-
-
-INSERT INTO 
-CartProducts(cartId, productId, quantity)
-Values	('1', '1', '1'),
-		('1', '2', '2');

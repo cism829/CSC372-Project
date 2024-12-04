@@ -1,6 +1,9 @@
 require('dotenv').config();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const { google } = require('googleapis');
+
+
 
 const userModel = require("../models/users.model");
 passport.use(new GoogleStrategy({
@@ -19,7 +22,12 @@ passport.use(new GoogleStrategy({
     }
     const user = userModel.getUserById(profile.id);
     if (!user) {
+        console.log("user model data:");
         userModel.createNewUser(Object.values(newUser));
+        console.log(newUser);
+        let userId = userModel.getUserById(newUser.googleId);
+        console.log(userId);
+        userModel.createCart(userId.userId);
     }
     return done(null, profile);
 }));
@@ -32,3 +40,5 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((obj, done) => {
     done(null, obj);
 });
+
+

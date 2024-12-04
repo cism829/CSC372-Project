@@ -21,7 +21,20 @@ html(lang="en")
             input#search-bar(type="text" placeholder="Search Product or Category")
             button#search-btn(type="sumbit") search 
         div.log
-            a(href="#") Logout 
+            if user
+                div#user-info
+                    img#user-pic(src=user.photos[0].value alt="User Icon") 
+                    p#press Welcome, #{user.name.givenName} 
+                    ul#userH 
+                        li 
+                            a#user-order(href="/products/orders/"+user.id) Your Orders
+                        li 
+                            a#logout(href="/auth/logout") logout 
+                        li 
+                            a(href="/admin") Admin Page
+            else
+                a(href="/auth/google") login/signup
+            
 
     block add 
 

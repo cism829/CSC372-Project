@@ -25,6 +25,7 @@ block content
             div#total 
                 p  subtotal: $#{subTotal}
             div#checkout 
-                button#chkBtn Checkout
+                form(action="/products/checkout/"+user.id)
+                    button#chkBtn(type="submite") Checkout
 
             
