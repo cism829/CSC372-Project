@@ -72,10 +72,10 @@ CREATE TABLE Orders(
 	ordersId INTEGER PRIMARY KEY AUTOINCREMENT,
 	totalPrice INTEGER,
 	quantity INTEGER,
-	cartId INTEGER,
 	productId INTEGER,
-	FOREIGN KEY (cartId) REFERENCES Carts(cartId),
-	FOREIGN KEY (productId) REFERENCES Products(productId)
+	userId INTEGER,
+	FOREIGN KEY (productId) REFERENCES Products(productId),
+	FOREIGN KEY (userId) REFERENCES Users(userId)
 );
 
 INSERT INTO 
@@ -90,9 +90,9 @@ VALUES  ('Blue Magic', '1', '/images/grease/blue-magix.avif', 'test shampoo', '5
         ('Mielle oil', '2', '/images/oils/mielle.avif', 'Mielle rosemary mint oil', '10.99', '854102006732'),
         ('Wild Growth Oil', '2', '/images/oils/wild.jpg', '', '8.55', '681702702418'),
         ('Two Strand Twist', '4', '/images/hair/2-strand.jfif', '', '60.00', ''),
-        ('Caster Oil', '2', '', 'High-quality wireless Bluetooth headphones with noise cancellation and long battery life.', '9.99', ''),
+        ('Caster Oil', '2', '/images/oils/jcastor.webp', 'High-quality wireless Bluetooth headphones with noise cancellation and long battery life.', '9.99', '714924022566'),
         ('Shine n Jam', '1', 'https://m.media-amazon.com/images/I/51rPBjPS0aL._AC_UF1000,1000_QL80_.jpg', ' ', '9.99', '191566430988'),
-		('Wide Toothed Comb', '3', '', 'Standard wide tooth comb', '2.99', '')
+		('Wide Toothed Comb', '3', '/images/misc/orange.webp', 'Standard wide tooth comb', '2.99', '')
 ;
 
 
