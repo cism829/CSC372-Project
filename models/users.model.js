@@ -9,7 +9,7 @@ function getUserById(id) {
   }
   
   function createNewUser(params) {
-    let sql = 'INSERT INTO Users ("google_id","name","first_name","last_name","email", picture) VALUES (?,?,?,?,?,?);';
+    let sql = 'INSERT INTO Users ("google_id","name","first_name","last_name","email", picture, acctype) VALUES (?,?,?,?,?,?,?);';
     const info = db.run(sql, params);
     return info;
   }

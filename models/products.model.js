@@ -77,6 +77,12 @@ function addToCart(params){
     console.log("added to cart");
 }
 
+function emptyCart(params){
+    let sql = "DELETE from CartProducts WHERE cartProductId=?"
+    db.run(sql, params);
+    console.log("deleted from cart");
+}
+
 function getUserbyGoo(params){
   let sql = "SELECT userId FROM Users WHERE google_id=?";
   let info = db.all(sql, params);
@@ -105,8 +111,8 @@ function getGoobyUser(params){
 }
 
 function makeOrders(params){
-  let sql="INSERT INTO Orders (userId, productId, quantity, totalPrice)"+
-          "Values (?,?,?,?);";
+  let sql="INSERT INTO Orders (userId, productId, quantity, totalPrice, orderDate)"+
+          "Values (?,?,?,?,?);";
   db.run(sql,params);
   
 }
@@ -118,9 +124,7 @@ function getOrder(params){
   return info;
 }
 
-function clearCart(params){
 
-}
 
 module.exports = {
   getAll,
@@ -140,5 +144,5 @@ module.exports = {
   getGoobyUser,
   makeOrders,
   getOrder,
-  clearCart
+  emptyCart
 };

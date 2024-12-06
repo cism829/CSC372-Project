@@ -12,13 +12,21 @@ passport.use(new GoogleStrategy({
     callbackURL: '/auth/google/callback'
 }, (token, tokenSecret, profile, done) => {
     // console.log(profile);
+    let accType ="";
+    if(profile.emails[0].value == "collin042410@gmail.com"){
+        accType = "admin";
+    }
+    else{
+        accType = "user";
+    }
     const newUser = {
         googleId: profile.id,
         name: profile.displayName,
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         email: profile.emails[0].value,
-        picture: profile.photos[0].value
+        picture: profile.photos[0].value,
+        accType
     }
     const user = userModel.getUserById(profile.id);
     if (!user) {
