@@ -72,6 +72,7 @@ CREATE TABLE Orders(
 	ordersId INTEGER PRIMARY KEY AUTOINCREMENT,
 	totalPrice INTEGER,
 	quantity INTEGER,
+	orderDate TEXT,
 	productId INTEGER,
 	userId INTEGER,
 	FOREIGN KEY (productId) REFERENCES Products(productId),

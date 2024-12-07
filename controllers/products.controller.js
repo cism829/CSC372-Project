@@ -204,7 +204,15 @@ function checkout(req, res, next) {
 
 
   let orderDate = orderTime();
-  console.log("start inserting")
+  let orderParms = [userId, orderDate];
+
+  let myOrder = model.createOrder(orderParms);
+  console.log("hey");
+  console.log(myOrder);
+  let orderId = myOrder.lastInsertRowid;
+
+  console.log("start inserting");
+
   for (let i = 0; i < cartItems.length; i++) {
     console.log(cartItems[i]);
 
@@ -217,7 +225,7 @@ function checkout(req, res, next) {
 
     let totalPrice = price * quantity;
 
-    params = [userId, productId, quantity, totalPrice, orderDate];
+    params = [orderId, productId, quantity, totalPrice];
 
     model.makeOrders(params);
     console.log("order made");
@@ -238,28 +246,47 @@ function getOrder(req, res, next) {
 
   let orders = model.getOrder(userId);
 
-  let items = [];
-  let total = 0;
-  console.log("order extraction")
+  let userOrders = [];
+  
+  console.log("order start")
   for (let i = 0; i < orders.length; i++) {
+    let user =[];
+    let totalPrice = 0; 
 
-    let id = orders[i].userId;
-    let quantity = orders[i].quantity;
-    let product = model.oneProduct(orders[i].productId);
-    let name = product.pName;
-    let price = orders[i].totalPrice;
-    let image = product.imageURL;
+    let orderId = orders[i].orderId;
 
-    total += price;
-    let info = { id, name, image, price, quantity };
+    let orderItem = model.getOrderItems(orderId);
+    // let items = {};
+    for (let j = 0; j < orderItem.length; j++) {
+      
+      console.log("getting order #"+orderId+" item #"+ j);
 
-    items[i] = info;
+      let name = orderItem[j].pName;
+      let quantity = orderItem[j].quantity;
+      let price = orderItem[j].price;
+      let image = orderItem[j].imageURL;
+    
+      totalPrice += parseFloat(price) * parseInt(quantity);
 
-
+      user[j]= {name, quantity, price, image};
+      
+    }
+    
+    userOrders[i] = {user, totalPrice};
+    console.log("order " + i + " retrieved.");
   }
-  let grandTotal = total.toFixed(2);
 
-  res.render("orders", { title: "Orders", items: items, grandTotal: grandTotal });
+  console.log(" ");
+  console.log(userOrders);
+  res.render("orders", { title: "Orders", userOrders: userOrders});
+}
+
+function getOrderTotal(userId, orderId){
+let params =[userId, orderId];
+
+  let total = model.getOrderTotal(params);
+  console.log(total);
+return total
 }
 
 function orderTime() {

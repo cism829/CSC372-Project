@@ -7,15 +7,16 @@ block styles
 block content
     h2 YOUR ORDER(S)
     div#order-container 
-        div#order-item
-            each item in items
-                div.oneItem
-                    div#order-pic
-                        img(src=item.image alt=item.name)
-                    div#order-info
-                        p #{item.name}
-                        p Qty: #{item.quantity} 
-                        p $#{item.price}
-        div#grand-total
-            h3 Total: $#{grandTotal}
+        each order in userOrders
+            div#order-item
+                each item in order.user
+                        div.oneItem
+                            div#order-pic
+                                img(src=item.image alt=item.name)
+                            div#order-info
+                                p #{item.name}
+                                p Qty: #{item.quantity} 
+                                p $#{item.price}
+            div.order-total
+                h3 Order Total: $#{order.totalPrice}
         
