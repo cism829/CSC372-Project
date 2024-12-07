@@ -64,4 +64,8 @@ router.post("/update/:id", upload.single("imageURL"), adminController.updateProd
 
 router.get("/delete/:id", adminController.deleteProduct);
 
+router.post("/new", upload.single("imageURL"), adminController.newProduct);
+
+router.get("/addProduct", adminController.newPage);
+
 module.exports = router;

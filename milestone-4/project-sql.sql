@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS OrderItems;
 DROP TABLE IF EXISTS ORDERS;
 
 DROP TABLE IF EXISTS CartProducts;
@@ -69,14 +70,20 @@ CREATE TABLE CartProducts(
 );
 
 CREATE TABLE Orders(
-	ordersId INTEGER PRIMARY KEY AUTOINCREMENT,
-	totalPrice INTEGER,
-	quantity INTEGER,
-	orderDate TEXT,
-	productId INTEGER,
-	userId INTEGER,
-	FOREIGN KEY (productId) REFERENCES Products(productId),
+	orderId INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    orderDate TEXT NOT NULL,
 	FOREIGN KEY (userId) REFERENCES Users(userId)
+);
+
+CREATE TABLE OrderItems(
+	orderItemId INTEGER PRIMARY KEY AUTOINCREMENT,
+    orderId INTEGER NOT NULL,
+    productId INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    totalPrice REAL NOT NULL,
+    FOREIGN KEY (orderId) REFERENCES Orders(orderId),
+	FOREIGN KEY (productId) REFERENCES Products(productId)
 );
 
 INSERT INTO 

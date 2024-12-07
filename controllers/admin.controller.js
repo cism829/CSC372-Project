@@ -81,8 +81,30 @@ function uploadProducts(req, res, next) {
   });
 }
 
-function newProduct(params) {
+function newPage(req, res, next){
+  res.render("admin/new", {title: "New Product" })
+}
+
+function newProduct(req, res, next) {
   console.log("newProduct");
+
+  let pName = req.body.pName;
+  let imageURL ="/images/uploads/" + req.file.filename;
+  let des = req.body.description;
+  let price = req.body.price;
+  let cateId = req.body.cateId;
+  let upc = req.body.upc;
+  console.log("upc= "+upc);
+  try {
+    let params = [pName, des, imageURL, price, cateId, upc];
+    model.createNew(params);
+
+    res.redirect("/admin");
+  } catch (err) {
+    console.error("Error update form", err.message);
+    next(err);
+  }
+
   model.createNew(params);
 
 }
@@ -146,6 +168,8 @@ module.exports = {
   uploadProducts,
   updatePage,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  newProduct,
+  newPage
   // createProduct,
 }

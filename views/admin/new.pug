@@ -1,0 +1,18 @@
+extends template 
+
+block scripts
+    script(src="/scripts/admin-script.js" defer)
+    script(src="/scripts/script.js" defer)
+
+block content
+    h1 Add a new product 
+    form#update-form(action="/admin/new" method="POST" enctype="multipart/form-data" )
+                input(type="text" name="pName" placeholder="Product Name" ) 
+                input(type="text" name="description" placeholder="Description")
+                input(type="number" name="price" placeholder="Price" step="0.01") 
+                input(type="number" name="cateId" placeholder="category")
+                input(type="number" name="upc" placeholder="upc")
+                input(type="file" name="imageURL" placeholder="New Image")
+                div#form-buttons
+                    button#updateBtn(type="submit") Save Changes
+                    button#close-edit Close

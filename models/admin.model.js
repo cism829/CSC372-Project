@@ -10,8 +10,8 @@ function getEverything() {
 function createNew(params) {
   console.log("in create new model");
   let sql = "INSERT INTO Products " +
-    "(pName, description, imageURL, price, cateId) " +
-    "VALUES(?, ?, ?, ?, ?); ";
+    "(pName, description, imageURL, price, cateId, upc) " +
+    "VALUES(?, ?, ?, ?, ?, ?); ";
   db.run(sql, params, function (err) {
     if (err) {
       console.log("AN ERORRRRRRRRRR")
@@ -43,8 +43,12 @@ function updateProduct(params) {
 }
 
 function deleteProduct(id) {
-  let sql = "DELETE FROM Products " +
-    "WHERE productId = ?;";
+let orderSql = "DELETE FROM OrderItems WHERE productId =?;";
+
+db.run(orderSql,id);
+
+  let sql = "DELETE FROM Products WHERE productId = ?;" ;
+   
   db.run(sql, id);
 
 }
