@@ -54,9 +54,10 @@ function uploadProducts(req, res, next) {
       for (let i = 0; i < json.length; i++) {
         let product = json[i];
         newpName = product.name;
-        let params = [product.name, product.description, product.image, product.price, product.category];
+        let params = [product.name, product.description, product.image, product.price, product.category, product.upc];
         console.log("params were made");
-        newProduct(params);
+
+        model.createNew(params);
         let productData = model.getByName(newpName);
 
         products[products.length] = productData;
