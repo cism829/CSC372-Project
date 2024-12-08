@@ -21,6 +21,7 @@ router.get(
         failureRedirect: "/",
     }),
     (req, res) => {
+        console.log("redirecing auth")
         res.redirect(req.session.returnTo);
     }
 );
